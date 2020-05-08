@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Install OpenCV On OSX | Julien Zouein</title><meta name="description" content="This tutorial will present how to install OpenCV on MacOS"><meta name="keywords" content="OpenCV,Installation,OSX,Tutorial"><meta name="author" content="Julien Zouein"><meta name="copyright" content="Julien Zouein"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Install OpenCV On OSX"><meta name="twitter:description" content="This tutorial will present how to install OpenCV on MacOS"><meta name="twitter:image" content="http://yoursite.com/img/cover/ml.jpg"><meta property="og:type" content="article"><meta property="og:title" content="Install OpenCV On OSX"><meta property="og:url" content="http://yoursite.com/2020/05/07/install_ocv_macOS/"><meta property="og:site_name" content="Julien Zouein"><meta property="og:description" content="This tutorial will present how to install OpenCV on MacOS"><meta property="og:image" content="http://yoursite.com/img/cover/ml.jpg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="http://yoursite.com/2020/05/07/install_ocv_macOS/"><link rel="next" title="Ui spliting" href="http://yoursite.com/2020/05/07/AST_UI_spliting/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.0"></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Julien Zouein</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Post</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div></div></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/profile.jpg" onerror="onerror=null;src='/img/wallpaper_default.jpg'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">6</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">16</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">10</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Post</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">Catalog</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Installing-XCode"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">Installing XCode</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Install-OpenCV"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">Install OpenCV</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Install-the-requirements"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">Install the requirements</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#OpenCV-with-Python"><span class="toc_mobile_items-number">2.2.</span> <span class="toc_mobile_items-text">OpenCV with Python</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Opencv-with-C"><span class="toc_mobile_items-number">2.3.</span> <span class="toc_mobile_items-text">Opencv with C++</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Installing-XCode"><span class="toc-number">1.</span> <span class="toc-text">Installing XCode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-OpenCV"><span class="toc-number">2.</span> <span class="toc-text">Install OpenCV</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-the-requirements"><span class="toc-number">2.1.</span> <span class="toc-text">Install the requirements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenCV-with-Python"><span class="toc-number">2.2.</span> <span class="toc-text">OpenCV with Python</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Opencv-with-C"><span class="toc-number">2.3.</span> <span class="toc-text">Opencv with C++</span></a></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(/img/cover/ml.jpg)"><div id="post-info"><div id="post-title"><div class="posttitle">Install OpenCV On OSX</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> Created 2020-05-07<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> Updated 2020-05-08</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Course/">Course</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Course/Installation/">Installation</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Course/Installation/MacOS/">MacOS</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>Post View:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><p>Our goal is to setup OpenCV on a MacOS computer. The idea is to be able to compile C++ code using OpenCV.<br>In this tutorial, we will use CMake to compile our programs.</p>
+<h2 id="Installing-XCode"><a href="#Installing-XCode" class="headerlink" title="Installing XCode"></a>Installing XCode</h2><p>The first step is to install XCode. To do so, you just have to use the Apple Store and get the last version of XCode.</p>
+<p>If the last version of XCode released on the Apple Store is not compatible with your OS, you should find the right XCode version to use using <a href="https://en.wikipedia.org/w/index.php?title=Xcode#Version_comparison_table" target="_blank" rel="noopener">this table</a>.</p>
+<p>Once you know which version of Xcode you need, go to <a href="https://developer.apple.com/download/more/" target="_blank" rel="noopener">Apple Developer website</a>, Login if you have an apple developer account, or just create one, and then you just have to find the needed version of XCode.</p>
+<p>Once XCode is installed, just open it and accept xcode-build license.</p>
+<h2 id="Install-OpenCV"><a href="#Install-OpenCV" class="headerlink" title="Install OpenCV"></a>Install OpenCV</h2><p>Once XCode is installed, we can move to OpenCV Installation.</p>
+<h3 id="Install-the-requirements"><a href="#Install-the-requirements" class="headerlink" title="Install the requirements"></a>Install the requirements</h3><p>A simple way to install packages on OSX is to use homebrew.<br>So the fist step will be to install homebrew on our device</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -e <span class="string">"<span class="variable">$(curl -fsSL https:/raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br><span class="line">$ brew update</span><br></pre></td></tr></table></figure></div>
+
+<p>Once we have installed Homebrew, we add it to the path</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"# Homebrew"</span> &gt;&gt; ~/.bash_profile</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">"export PATH=/usr/local/bin:<span class="variable">$PATH</span>"</span> &gt;&gt; ~/.bash_profile</span><br></pre></td></tr></table></figure></div>
+
+<p>Now we can start to install our requirements.<br>OpenCV can be used in python or C++. We will use it for C++ but we can still install the requirements for Python.</p>
+<p>We will install python 3, to be able to use OpenCV in python. It will also require CMAKE and Qt.</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ brew install python3</span><br><span class="line">$ brew install cmake</span><br><span class="line">$ brew install qt5</span><br></pre></td></tr></table></figure></div>
+
+<p>To configure the build directory we will use CMake. I recommend to download CMake directly from their <a href="https://cmake.org/download/" target="_blank" rel="noopener">website</a>.</p>
+<h3 id="OpenCV-with-Python"><a href="#OpenCV-with-Python" class="headerlink" title="OpenCV with Python"></a>OpenCV with Python</h3><p>Now that we have installed python3, we can configure it to use opencv.</p>
+<p>We will download Anaconda to simplify the usage of python3 and always keep a clean environment.</p>
+<p>conda is a high level package manager combining virtualenv and pip, to make it easy to create vuirtual python dev envitonments, and keep a clean local configuration.</p>
+<p><a href="https://docs.anaconda.com/anaconda/install/mac-os/" target="_blank" rel="noopener">Here</a> is the tutorial given by Anaconda to help install it on MacoS.</p>
+<p>Once anaconda is installed, we can create an anaconda virtual environment. To do so, open your shell</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ conda create -n ocv_test</span><br></pre></td></tr></table></figure></div>
+
+<p>we now need to launch this environment</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ conda activate ocv_test</span><br></pre></td></tr></table></figure></div>
+
+<p>once in the virtual environment we can install all required packages, by using pip or anaconda.</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ conda install -c conda-forge opencv</span><br></pre></td></tr></table></figure></div>
+
+<p>All anaconda packages available can be found <a href="https://anaconda.org/search?q=" target="_blank" rel="noopener">here</a></p>
+<h3 id="Opencv-with-C"><a href="#Opencv-with-C" class="headerlink" title="Opencv with C++"></a>Opencv with C++</h3><p>To install OpenCV and make it work in C++ needs more steps.</p>
+<p>First we need to clone the OpenCV repositories. I chose to clone them in my /opt/ folder :</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /opt/</span><br><span class="line">$ mkdir ocv-git</span><br><span class="line">$ <span class="built_in">cd</span> ocv-git/</span><br></pre></td></tr></table></figure></div>
+
+<p>We will clone them directly in <code>ocv-git</code>. We will also check if we are using the last stable version.</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/opencv/opencv.git</span><br><span class="line">$ <span class="built_in">cd</span> opencv/ </span><br><span class="line">$ git checkout master</span><br><span class="line">$ <span class="built_in">cd</span> ..</span><br><span class="line">$</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/opencv/opencv_contrib.git</span><br><span class="line">$ <span class="built_in">cd</span> opencv_contrib</span><br><span class="line">$ git checkout master</span><br><span class="line">$ <span class="built_in">cd</span> ..</span><br><span class="line"></span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/opencv/opencv_extra.git</span><br><span class="line">$ <span class="built_in">cd</span> opencv_extra</span><br><span class="line">$ git checkout master</span><br><span class="line"><span class="variable">$c</span> <span class="built_in">cd</span> ..</span><br></pre></td></tr></table></figure></div>
+
+<p>Now we have all sources needed (<code>opencv_extra</code> is used to access tests).</p>
+<p>Now it is time to use cmake. Open your CMake software. It should look like mine.</p>
+<p><a href="https://zupimages.net/up/20/19/j6uf.png" target="_blank" rel="noopener" data-fancybox="group" data-caption="CMake Gui" class="fancybox"><img alt="CMake Gui" title="CMake Gui" data-src="https://zupimages.net/up/20/19/j6uf.png" class="lazyload"></a></p>
+<p>Select the path to the source code of opencv/ main repository. In my case it is in <code>/opt/ocv-git/opencv/</code>.</p>
+<p>For “Where to build the libraries” choose the same path but add <code>build/</code> at the end (<code>/opt/ocv-git/opencv/build/</code>).</p>
+<p>Once it is done, click on configure button. It will ask you if the software can create the build folder, just say yes.</p>
+<p>Once you configured it once, you will have access to the main parameters. Here you can choose what you want to build then.</p>
+<p>In our case we took</p>
+<ul>
+<li><code>OPENCV_ENABLE_NONFREE</code></li>
+<li><code>WITH_QT</code></li>
+<li><code>WITH_TBB</code></li>
+<li><code>INSTALL_C_EXAMPLES</code></li>
+<li><code>ENABLE_FAST_MATH</code></li>
+</ul>
+<p>Once you have selected everything just click once again on <code>configure</code> and then on <code>generate</code>.</p>
+<p>We will not need CMake anymore. Feel free to close the application.</p>
+<p>Let us go back to our shell. We go to our build folder opencv in order to build it.</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /opt/ocv-git/opencv/build/</span><br><span class="line">$ make -j$(sysctl -n hw.physicalcpu)</span><br><span class="line">$ make install</span><br></pre></td></tr></table></figure></div>
+
+<p><em>It may take some time</em></p>
+<p>We are almost done. We will now use test given by OpenCV.</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> OPENCV_TEST_DATA_PATH=/opt/ocv-git/opencv_extra/testdata</span><br></pre></td></tr></table></figure></div>
+
+<p>Now we can launch easily all the tests.</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /opt/ocv-git/opencv/build/</span><br><span class="line">$ bin/opencv_test_core</span><br></pre></td></tr></table></figure></div>
+
+<p>Once it is done, we add to our path the path to OpenCV lib directory</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> OpenCV_DIR=/usr/<span class="built_in">local</span>/lib/cmake/opencv4</span><br></pre></td></tr></table></figure></div>
+
+<p>Now, we just have to create our CMake file </p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># Project Name</span><br><span class="line">project(OCV_Tutorial)</span><br><span class="line"></span><br><span class="line"># Use OpenCV_DIR to find the packages</span><br><span class="line">find_package(OpenCV REQUIRED)</span><br><span class="line"></span><br><span class="line"># If we found the package, we will initiliaze some variables.</span><br><span class="line"></span><br><span class="line"># We display some of those variables</span><br><span class="line">message(STATUS &quot;OpenCV library status:&quot;)</span><br><span class="line">message(STATUS &quot;    version: $&#123;OpenCV_VERSION&#125;&quot;)</span><br><span class="line">message(STATUS &quot;    libraries: $&#123;OpenCV_LIBS&#125;&quot;)</span><br><span class="line">message(STATUS &quot;    include path: $&#123;OpenCV_INCLUDE_DIRS&#125;&quot;)</span><br><span class="line"></span><br><span class="line"># force C++11</span><br><span class="line">set (CMAKE_CXX_STANDARD 11)</span><br><span class="line"></span><br><span class="line">if(CMAKE_VERSION VERSION_LESS &quot;2.8.11&quot;)</span><br><span class="line">  # Ajoute les dossiers headers OpenCV aux includes</span><br><span class="line">  include_directories($&#123;OpenCV_INCLUDE_DIRS&#125;)</span><br><span class="line">endif()</span><br><span class="line"></span><br><span class="line"># Name of the generated binary</span><br><span class="line">add_executable(OCV_Tutorial main.cpp)</span><br><span class="line"></span><br><span class="line"># Link the application with OpenCV libraries</span><br><span class="line">target_link_libraries(UI_split $&#123;OpenCV_LIBS&#125;)</span><br></pre></td></tr></table></figure></div>
+
+<p>Save this as <code>CMakeLists.txt</code> in your project folder.</p>
+<p>Then write the following commands in your shell : </p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cmake .</span><br><span class="line">$ make</span><br></pre></td></tr></table></figure></div>
+
+<p>You will generate your binary, and just have to do </p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./OCV_Tutorial</span><br></pre></td></tr></table></figure></div>
+
+<p>to run it.</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Julien Zouein</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2020/05/07/install_ocv_macOS/">http://yoursite.com/2020/05/07/install_ocv_macOS/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/OpenCV/">OpenCV    </a><a class="post-meta__tags" href="/tags/Installation/">Installation    </a><a class="post-meta__tags" href="/tags/OSX/">OSX    </a><a class="post-meta__tags" href="/tags/Tutorial/">Tutorial    </a></div><div class="post_share"><div class="social-share" data-image="/img/cover/ml.jpg" data-sites="facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2020/05/07/AST_UI_spliting/"><img class="next_cover lazyload" data-src="/img/cover/ml.jpg" onerror="onerror=null;src='/img/wallpaper_default.jpg'"><div class="label">Next Post</div><div class="next_info"><span>Ui spliting</span></div></a></div></nav></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 By Julien Zouein</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="Read Mode"></i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><i class="darkmode fa fa-sun-o" id="darkmode" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-list-ul close" id="mobile-toc-button" title="Table of Contents" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script></body></html>
